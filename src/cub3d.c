@@ -12,23 +12,20 @@
 #include "../includes/cub3d.h"
 #include "../includes/libft.h"
 
-void	ft_init_cube(t_cub3d *cub3d)
+t_cub3d	*ft_init_cube(t_cub3d *cub3d)
 {
 	t_texture *tmp;
 	cub3d = (t_cub3d *) malloc (sizeof(t_cub3d));
 	tmp = (t_texture *) malloc (sizeof(t_texture));
 	
-	(*cub3d).texture = tmp;
-	//cub3d->texture = tmp;
+	cub3d->texture = tmp;
 	cub3d->map_width = 0;
-	//printf("termina o init0\n");
 	cub3d->map_len = 0;
-	//printf("termina o init1\n");
 	cub3d->texture->north = NULL;
 	cub3d->texture->south = NULL;
 	cub3d->texture->west = NULL;
 	cub3d->texture->east = NULL;
-	//printf("termina o init\n");
+	return (cub3d);
 }
 
 int	main(int argc, char **argv)
@@ -40,7 +37,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (ft_read_scene(cub3d, argc, argv[1]))
 		return (EXIT_FAILURE);
-	ft_init_cube(cub3d);
+	cub3d = ft_init_cube(cub3d);
 	ft_read_textures(cub3d, argv[1]);
 
 	return (0);

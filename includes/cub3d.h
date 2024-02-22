@@ -12,7 +12,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
+# include "../mlx_linux/mlx.h"
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -103,10 +103,9 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_line_len(char *buffer);
 int		ft_line_break(char *buffer);
 char	*ft_new_buffer(char *buffer, char *nextbuffer, int i, int buffer_len);
-
 int 	ft_read_scene(t_cub3d *cub3d, int argc, char *argv);
 int		ft_read_textures(t_cub3d *cub3d, char *scene);
-void	ft_init_cube(t_cub3d *cub3d);
+t_cub3d	*ft_init_cube(t_cub3d *cub3d);
 int		ft_check_arg(int argc, char **argv);
 
 #endif
