@@ -17,14 +17,15 @@ void ft_build_map(t_cub3d *cub3d, char *line, int *nlin)
 	int i;
 
 	i = 0;
+	printf("passou peuva\n");
 	if ((line[0] == 'N' && line[1] == 'O') || (line[0] == 'S' && line[1] == 'O') || (line[0] == 'W' && line[1] == 'E') \
 	|| (line[0] == 'E' && line[1] == 'A') || (line[0] == 'F' || line[1] == 'C'))
 		;//ft_define_color(line);
 	else if (line[0] == '0' || line[0] == '1' || line[0] == 'N' || line[0] == 'S' || line[0] == 'W' || line[0] == 'E' || line[0] == ' ' || line[0] == '\t')
 	{
-		while (i < cub3d->map_width)
+		while (line[i] && i < cub3d->map_width - 1)
 		{
-			cub3d->map[i + (*nlin) * (cub3d->map_width)] = line[i];
+			cub3d->map[i + (*nlin) * (cub3d->map_width - 1)] = line[i];
 			i++;
 		}
 		(*nlin)++;
@@ -87,10 +88,16 @@ int	ft_read_textures(t_cub3d *cub3d, char *scene, int stage)
 
 int	ft_read_scene(t_cub3d *cub3d, int argc, char *argv)
 {
+	char *tmp;
+	
 	(void) argc;
 	ft_read_textures(cub3d, argv, 0);
 	printf("witdh: %d, len: %d\n", cub3d->map_width, cub3d->map_len);
-	cub3d->map = (char *) malloc (sizeof((cub3d->map_width) * cub3d->map_len + 1));
+	tmp = (char *) malloc (sizeof((cub3d->map_width) * cub3d->map_len + 1));
+	tmp[cub3d->map_width * cub3d->map_len + 1] = '\0';
+	printf("%p\n", &tmp);
+	cub3d->map = tmp;
+	printf("%p\n", &cub3d->map);
 	ft_read_textures(cub3d, argv, 1);
 	ft_print_debug(cub3d);
 	return (EXIT_SUCCESS);

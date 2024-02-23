@@ -25,6 +25,7 @@ t_cub3d	*ft_init_cube(t_cub3d *cub3d)
 		free(cub3d);
 		return (NULL);
 	}
+	cub3d->map = NULL;
 	cub3d->texture = tmp;
 	cub3d->map_width = 0;
 	cub3d->map_len = 0;
