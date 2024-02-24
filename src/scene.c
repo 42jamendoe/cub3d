@@ -93,7 +93,7 @@ int	ft_read_scene(t_cub3d *cub3d, int argc, char *argv)
 	(void) argc;
 	ft_read_textures(cub3d, argv, 0);
 	printf("witdh: %d, len: %d\n", cub3d->map_width, cub3d->map_len);
-	tmp = (char *) malloc (sizeof((cub3d->map_width) * cub3d->map_len + 1));
+	tmp = (char *) calloc ((cub3d->map_width) * cub3d->map_len + 1, sizeof(char));
 	tmp[cub3d->map_width * cub3d->map_len + 1] = '\0';
 	printf("%p\n", &tmp);
 	cub3d->map = tmp;

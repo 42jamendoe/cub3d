@@ -38,12 +38,20 @@ t_cub3d	*ft_init_cube(t_cub3d *cub3d)
 
 void ft_print_debug( t_cub3d *cub3d)
 {
+	int i = 0;
 	printf("map width: %d\n", cub3d->map_width);
 	printf("map lenght: %d\n", cub3d->map_len);
 	printf("north: %s\n", cub3d->texture->north);
 	printf("south: %s\n", cub3d->texture->south);
 	printf("west: %s\n", cub3d->texture->west);
 	printf("east: %s\n", cub3d->texture->east);
+	while (cub3d->map[i])
+	{
+		printf("%c", cub3d->map[i]);
+		if ((i+1)%29 == 0)
+			printf("\n");
+		i++;
+	}
 }
 
 
