@@ -33,6 +33,10 @@ t_cub3d	*ft_init_cube(t_cub3d *cub3d)
 	cub3d->texture->south = NULL;
 	cub3d->texture->west = NULL;
 	cub3d->texture->east = NULL;
+	cub3d->vision->x = 0.0f;
+	cub3d->vision->y = -1.0f;
+	cub3d->side_x = 0;
+	cub3d->side_y = 0;
 	return (cub3d);
 }
 

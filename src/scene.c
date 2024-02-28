@@ -17,7 +17,6 @@ void ft_build_map(t_cub3d *cub3d, char *line, int *nlin)
 	int i;
 
 	i = 0;
-	printf("passou peuva\n");
 	if ((line[0] == 'N' && line[1] == 'O') || (line[0] == 'S' && line[1] == 'O') || (line[0] == 'W' && line[1] == 'E') \
 	|| (line[0] == 'E' && line[1] == 'A') || (line[0] == 'F' || line[1] == 'C'))
 		;//ft_define_color(line);
@@ -89,16 +88,27 @@ int	ft_read_textures(t_cub3d *cub3d, char *scene, int stage)
 int	ft_read_scene(t_cub3d *cub3d, int argc, char *argv)
 {
 	char *tmp;
+	void *screenshoot;
+	void *frame;
 	
 	(void) argc;
 	ft_read_textures(cub3d, argv, 0);
 	printf("witdh: %d, len: %d\n", cub3d->map_width, cub3d->map_len);
-	tmp = (char *) calloc ((cub3d->map_width) * cub3d->map_len + 1, sizeof(char));
+	tmp = (char *) ft_calloc ((cub3d->map_width) * cub3d->map_len + 1, sizeof(char));
 	tmp[cub3d->map_width * cub3d->map_len + 1] = '\0';
 	printf("%p\n", &tmp);
 	cub3d->map = tmp;
 	printf("%p\n", &cub3d->map);
 	ft_read_textures(cub3d, argv, 1);
+	ft_get_deltas(cub3d);
+	ft_initial_lens(cub3d);
+	printf("side x: %f side y: %f\n", cub3d->side_x, cub3d->side_y);
+	cub3d->mlx = mlx_init();
+	screenshoot = mlx_new_window(cub3d->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
+	frame = mlx_new_image(cub3d->mlx, 800, 600);
+	mlx_put_image_to_window(cub3d->mlx, screenshoot, frame, 0, 0);
+	mlx_loop(cub3d->mlx);
+	//ft_load_player(cub3d);
 	ft_print_debug(cub3d);
 	return (EXIT_SUCCESS);
 }

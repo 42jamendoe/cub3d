@@ -59,6 +59,7 @@ int	main(int argc, char **argv)
 	int x;
 	x = 0;
 	void	*frame;
+	void	*frame_c;
 	char *frame_c;
 	char *map;
 	int bpp;

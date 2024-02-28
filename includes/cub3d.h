@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
 
 # define SCREEN_HEIGHT 600
 # define SCREEN_WIDTH 800
@@ -72,6 +73,7 @@ typedef struct s_collectible{
 typedef struct s_cub3d{
 
 	t_coord			*player;
+	char			orientation;
 	t_coord			*vision;
 	t_coord			*fieldov;
 	t_texture		*texture;
@@ -90,6 +92,12 @@ typedef struct s_cub3d{
 	int				win_end;
 	t_collectible	*collectible_list;
 	t_tiles			tile;
+	double			side_x;
+	double			side_y;
+	double			delta_x;
+	double			delta_y;
+	double			ray_len_x;
+
 }	t_cub3d;
 
 int		ft_check_arg(int argc, char **argv);
@@ -107,7 +115,11 @@ int 	ft_read_scene(t_cub3d *cub3d, int argc, char *argv);
 int		ft_read_textures(t_cub3d *cub3d, char *scene, int stage);
 t_cub3d	*ft_init_cube(t_cub3d *cub3d);
 int		ft_check_arg(int argc, char **argv);
+void 	ft_load_player(t_cub3d *cub3d);
+void ft_get_deltas(t_cub3d *cub3d);
+void	ft_initial_lens(t_cub3d *cub3d);
 
 void ft_print_debug( t_cub3d *cub3d);
+
 
 #endif
