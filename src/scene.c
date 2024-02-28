@@ -103,6 +103,7 @@ int	ft_read_scene(t_cub3d *cub3d, int argc, char *argv)
 	ft_get_deltas(cub3d);
 	ft_initial_lens(cub3d);
 	printf("side x: %f side y: %f\n", cub3d->side_x, cub3d->side_y);
+	printf("side x: %f side y: %f\n", cub3d->side_x, cub3d->side_y);
 	cub3d->mlx = mlx_init();
 	screenshoot = mlx_new_window(cub3d->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 	frame = mlx_new_image(cub3d->mlx, 800, 600);

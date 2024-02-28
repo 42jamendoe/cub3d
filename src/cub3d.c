@@ -14,7 +14,8 @@
 
 t_cub3d	*ft_init_cube(t_cub3d *cub3d)
 {
-	t_texture *tmp;
+	t_texture	*tmp;
+	t_coord		*tmp_vision;
 
 	cub3d = (t_cub3d *) malloc (sizeof(t_cub3d));
 	if (!cub3d)
@@ -25,7 +26,15 @@ t_cub3d	*ft_init_cube(t_cub3d *cub3d)
 		free(cub3d);
 		return (NULL);
 	}
+	tmp_vision = (t_coord *) malloc (sizeof(t_coord));
+	if (!tmp_vision)
+	{
+		free(cub3d);
+		free(tmp_vision);
+		return (NULL);
+	}
 	cub3d->map = NULL;
+	cub3d->vision = tmp_vision;
 	cub3d->texture = tmp;
 	cub3d->map_width = 0;
 	cub3d->map_len = 0;
@@ -33,8 +42,8 @@ t_cub3d	*ft_init_cube(t_cub3d *cub3d)
 	cub3d->texture->south = NULL;
 	cub3d->texture->west = NULL;
 	cub3d->texture->east = NULL;
-	cub3d->vision->x = 0.0f;
-	cub3d->vision->y = -1.0f;
+	cub3d->vision->x = 0.0;
+	cub3d->vision->y = 1.0;
 	cub3d->side_x = 0;
 	cub3d->side_y = 0;
 	return (cub3d);
