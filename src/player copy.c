@@ -12,35 +12,35 @@
 #include "../includes/cub3d.h"
 #include "../includes/libft.h"
 
-void    ft_set_orientation(t_cub3d *cub3d)
+void    ft_set_orientation(t_cub3d *cub3d, char orientation)
 {
-    if (cub3d->orientation == 'N' || cub3d->orientation == 'S')
+    if (orientation == 'N' || orientation == 'S')
     {
         cub3d->fieldov_y = 0;
         cub3d->vision->x = 0;
-        if (cub3d->orientation == 'N')
-        {
-            cub3d->fieldov_x = -0.6;
-            cub3d->vision->y = 1;
-        }
-        else
+        if (orientation == 'N')
         {
             cub3d->fieldov_x = 0.6;
             cub3d->vision->y = -1;
         }
-    }
-    if (cub3d->orientation == 'E' || cub3d->orientation == 'W')
-    {
-        cub3d->fieldov_x = 0;
-        cub3d->vision->y = 0;
-        if (cub3d->orientation == 'E')
+        else
         {
-            cub3d->fieldov_y = -0.6;
+            cub3d->fieldov_x = -0.6;
+            cub3d->vision->y = 1;
+        }
+    }
+    if (orientation == 'E' || orientation == 'W')
+    {
+        cub3d->fieldov->x = 0;
+        cub3d->vision->y = 0;
+        if (orientation == 'E')
+        {
+            cub3d->fieldov->y = -0.6;
             cub3d->vision->x = 1;
         }
         else
         {
-            cub3d->fieldov_y = 0.6;
+            cub3d->fieldov->y = 0.6;
             cub3d->vision->x = -1;
         }
     }
@@ -64,5 +64,4 @@ void ft_load_player(t_cub3d *cub3d)
         }
         i++;
     }
-    ft_set_orientation(cub3d);
 }

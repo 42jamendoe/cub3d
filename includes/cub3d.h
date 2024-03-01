@@ -73,10 +73,14 @@ typedef struct s_collectible{
 typedef struct s_cub3d{
 
 	t_coord			*player;
+	double	player_x;
+	double	player_y;
 	char			orientation;
 	t_coord			*vision;
-	t_coord			*fieldov;
+	//t_coord			*fieldov;
 	t_texture		*texture;
+	double	fieldov_x;
+	double	fieldov_y;
 	int				map_width;
 	int				map_len;
 	void			*mlx;

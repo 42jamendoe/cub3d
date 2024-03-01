@@ -1,7 +1,7 @@
 NAME = cub3d
 NAME_BONUS = cub3d_bonus
 LIBFT = ./libft/libft.a
-MLX = ./mlx/libmlx.a
+MLX = ./mlx_linux/libmlx.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
@@ -18,31 +18,31 @@ SRC = cub3d.c \
 
 OBJ = $(SRC:%.c=$(SRCD)/%.o)
 
-SRC_BONUS = cub3d_bonus.c 
+SRC_BONUS = cub3d.c 
 
 OBJ_BONUS = $(SRC_BONUS:%.c=$(SRCD_BONUS)/%.o)
 
 all: $(LIBFT) $(MLX) $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -Llibft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -Llibft -lft -Lmlx_linux -lmlx_Linux -lbsd -lXext -lX11 -lm -o $(NAME)
 
 $(LIBFT):	
 	$(MAKE) -C libft
 
 $(MLX):	
-	$(MAKE) -C mlx
+	$(MAKE) -C mlx_linux
 
 $(SRCD)/%.o: $(SRCD)/%.c
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx_Linux -Iincludes -c $< -o $@
 
 bonus: $(LIBFT) $(MLX) $(NAME_BONUS)
 
 $(NAME_BONUS): $(OBJ_BONUS)
-	$(CC) $(CFLAGS) $(OBJ_BONUS) -Llibft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) $(OBJ_BONUS) -Llibft -lft -Lmlx_linux -lmlx -lbsd -lXext -lX11 -lm  -o $(NAME_BONUS)
 
 $(SRCD_BONUS)/%.o: $(SRCD_BONUS)/%.c
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -Iincludes -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

@@ -36,14 +36,14 @@ void ft_get_deltas(t_cub3d *cub3d)
 {
 	double	handle_z;
 	
-	if (cub3d->vision->x == 0)
+	if (cub3d->fieldov_x== 0)
 		handle_z = 1e30;
 	else
-		handle_z =  cub3d->vision->x; 
+		handle_z =  cub3d->fieldov_x; 
 	cub3d->delta_x = fabs(1/handle_z);
-	if (cub3d->vision->y == 0)
+	if (cub3d->fieldov_y == 0)
 		handle_z = 1e30;
 	else
-		handle_z =  cub3d->vision->y; 
+		handle_z =  cub3d->fieldov_y; 
 	cub3d->delta_y = fabs(1/handle_z);
 }

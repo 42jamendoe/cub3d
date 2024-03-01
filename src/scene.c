@@ -12,6 +12,20 @@
 #include "../includes/cub3d.h"
 #include "../includes/libft.h"
 
+// void	ft_init_player(t_cub3d *cub3d)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (cub3d->map[i] != '\0')
+// 	{
+// 		if (cub3d->map[i] == 'N' || cub3d->map[i] == 'S' || cub3d->map[i] == 'W' || cub3d->map[i] == 'E')
+// 			break ;
+// 		i++;
+// 	}
+
+// }
+
 void ft_build_map(t_cub3d *cub3d, char *line, int *nlin)
 {
 	int i;
@@ -100,10 +114,13 @@ int	ft_read_scene(t_cub3d *cub3d, int argc, char *argv)
 	cub3d->map = tmp;
 	printf("%p\n", &cub3d->map);
 	ft_read_textures(cub3d, argv, 1);
+	ft_load_player(cub3d);
 	ft_get_deltas(cub3d);
-	ft_initial_lens(cub3d);
-	printf("side x: %f side y: %f\n", cub3d->side_x, cub3d->side_y);
-	printf("side x: %f side y: %f\n", cub3d->side_x, cub3d->side_y);
+	// ft_initial_lens(cub3d);
+	printf("delta x: %f delta y: %f\n", cub3d->delta_x, cub3d->delta_y);
+	printf("vision x: %f vision y: %f\n", cub3d->vision->x, cub3d->vision->y);
+	printf("vision x: %c\n", cub3d->orientation);
+	// printf("side x: %f side y: %f\n", cub3d->side_x, cub3d->side_y);
 	cub3d->mlx = mlx_init();
 	screenshoot = mlx_new_window(cub3d->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 	frame = mlx_new_image(cub3d->mlx, 800, 600);
